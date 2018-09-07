@@ -99,8 +99,9 @@ $(function() {
         });
 
         it('are present after feed is loaded', function(done) {
-            const feed = document.querySelector('.feed');
-            expect(feed.children.length).not.toBe(0);
+            const entries = document.querySelectorAll('.feed .entry');
+            console.log(entries);
+            expect(entries.length).not.toBe(0);
             done();
         });
     });
