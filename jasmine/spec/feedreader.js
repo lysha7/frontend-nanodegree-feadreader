@@ -112,7 +112,31 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        var feedTitle1,
+            feedTitle2,
+            entryTitle1,
+            entryTitle2;
 
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                feedTitle1 = document.querySelector('.header-title').textContent;
+                entryTitle1 = document.querySelector('.entry h2').textContent;
+                console.log(feedTitle1, entryTitle1);
+            });
+            loadFeed(1, function() {
+                feedTitle2 = document.querySelector('.header-title').textContent;
+                entryTitle2 = document.querySelector('.entry h2').textContent;
+                console.log(feedTitle2, entryTitle2);
+                done();
+            });
+        });
+
+        it('loads new content', function(done) {
+            console.log(feedTitle1, feedTitle2);
+            expect(feedTitle1).not.toMatch(feedTitle2);
+            expect(entryTitle1).not.toMatch(entryTitle2);
+            done();
+        });
 
      });
 }());
