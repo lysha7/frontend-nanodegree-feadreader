@@ -57,7 +57,7 @@ $(function() {
         // Ensures the menu element is hidden by default.
         it('is hidden by default', function() {
             const body = document.querySelector('body');
-            expect(body.classList.value).toBe('menu-hidden');
+            expect(body.classList.contains('menu-hidden')).toBe(true);
         });
 
         // Ensures the menu changes visibility when the menu icon is clicked.
@@ -66,10 +66,10 @@ $(function() {
             const menuIcon = document.querySelector('.menu-icon-link');
 
             menuIcon.click();
-            expect(body.classList.value).toBe('');
+            expect(body.classList.contains('menu-hidden')).toBe(false);
 
             menuIcon.click();
-            expect(body.classList.value).toBe('menu-hidden');
+            expect(body.classList.contains('menu-hidden')).toBe(true);
         });
     });
     
@@ -104,11 +104,12 @@ $(function() {
             loadFeed(0, function() {
                 feedTitle1 = document.querySelector('.header-title').textContent;
                 entryTitle1 = document.querySelector('.entry h2').textContent;
-            });
-            loadFeed(1, function() {
-                feedTitle2 = document.querySelector('.header-title').textContent;
-                entryTitle2 = document.querySelector('.entry h2').textContent;
-                done();
+                
+                loadFeed(1, function() {
+                    feedTitle2 = document.querySelector('.header-title').textContent;
+                    entryTitle2 = document.querySelector('.entry h2').textContent;
+                    done();
+                });
             });
         });
 
