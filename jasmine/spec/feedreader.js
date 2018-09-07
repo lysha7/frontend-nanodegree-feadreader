@@ -83,7 +83,7 @@ $(function() {
             });
         });
 
-        // Ensures that there is at least a sincle .entry element within the .feed container
+        // Ensures that there is at least a single .entry element within the .feed container
         it('are present after feed is loaded', function(done) {
             const entries = document.querySelectorAll('.feed .entry');
             expect(entries.length).not.toBe(0);
